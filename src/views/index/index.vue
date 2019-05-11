@@ -155,7 +155,6 @@ export default {
     components: { naviMenu },
     // 路由更新时改变pageTitle
     beforeRouteUpdate(to, from, next) {
-        console.log(123);
         this.pageTitle = titleMap.get(to.name);
         next();
     },

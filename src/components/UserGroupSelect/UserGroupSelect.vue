@@ -1,5 +1,4 @@
 <style lang='scss' scoped>
-@import "../../styles/public.scss";
 .son-app {
     margin-bottom: 15px;
     padding: 15px 20px;
@@ -27,8 +26,10 @@
     <div class="son-app" @click="clickShowUserGroupSelect()" >
         <div class="user-group-select-box">
             <div class="option-title">分析用户群：</div>
-            <el-select @change="changeSelectUserGroup()" v-model="selectedUserGroup"
-                multiple multiple-limit='3' placeholder="请选择" v-if="isShowUserGroupSelect" >
+            <el-select
+                v-model="selectedUserGroup"
+                multiple :multiple-limit="multipleLimit" placeholder="请选择"
+                v-if="isShowUserGroupSelect" >
                 <el-option v-for="item in user_group_option" :key="item.value" :value="item.value" >
                 </el-option>
             </el-select>
@@ -58,6 +59,9 @@ import UserGroupDialog from '../UserGroupDialog/UserGroupDialog.vue';
 
 export default {
     name: 'userGroupSelect',
+    props: {
+        belong: String,
+    },
     data() {
         return {
             show: false,
@@ -66,6 +70,8 @@ export default {
             user_group_option: [
                 // { name: '所有用户' },
             ],
+            // 最大选择数
+            multipleLimit: 3,
         };
     },
     created() {
@@ -79,10 +85,10 @@ export default {
             if (this.isShowUserGroupSelect) return;
             this.isShowUserGroupSelect = true;
         },
-        changeSelectUserGroup() {
-            // 选择用户群改变
-            this.$emit('changeSelectUserGroup', this.selectedUserGroup);
-        },
+        // // 选择用户群改变
+        // changeSelectUserGroup() {
+        //     //  @change="changeSelectUserGroup()"
+        // },
         showCreateUserGroupDialog() {
             this.show = true;
         },
@@ -90,6 +96,12 @@ export default {
             this.show = false;
         },
         clickConfirm() {
+            if (this.belong) {
+                this.$store.commit('changeUserGroup', {
+                    page: this.belong,
+                    value: this.selectedUserGroup,
+                });
+            }
             this.isShowUserGroupSelect = false;
         },
     },

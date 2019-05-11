@@ -13,6 +13,7 @@ module.exports = {
         'indent': ["error", 4],
         'no-param-reassign': 'off',
         'import/prefer-default-export': 'off',
+        'func-names': ["error", "as-needed"],
     },
     parserOptions: {
         parser: 'babel-eslint',

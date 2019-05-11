@@ -1,4 +1,4 @@
-# project
+# 用户行为分析后台
 
 ## Project setup
 ```
@@ -14,19 +14,5 @@ npm run serve
 ```
 npm run build
 ```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
 
 + 账号密码 ： test

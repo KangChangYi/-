@@ -67,62 +67,34 @@
         <div class="login-form-layout">
             <div class="form-item">
                 <div id="title">用户名</div>
-                <el-input
-                    placeholder="请输入用户名 test"
-                    @focus="focusInput()"
-                    v-model="loginForm.userName"
-                >
-                    <img
-                        slot="prefix"
-                        class="input-icon"
-                        src="../../assets/image/icon-userName.png"
-                    >
-                    <div
-                        slot="suffix"
-                        class="tip-text"
-                        v-if="isFormDataError"
-                    >{{FormDataErrorText}}</div>
+                <el-input placeholder="请输入用户名 test" @focus="focusInput()"
+                    v-model="loginForm.userName" >
+                    <img slot="prefix" class="input-icon"
+                    src="../../assets/image/icon-userName.png" >
+                    <div slot="suffix" class="tip-text" v-if="isFormDataError" >
+                        {{FormDataErrorText}}
+                    </div>
                 </el-input>
             </div>
 
             <div class="form-item">
                 <div id="title">密码</div>
-                <el-input
-                    placeholder="请输入密码 test"
-                    type="password"
-                    @focus="focusInput()"
-                    v-model="loginForm.passWord"
-                >
-                    <img
-                        slot="prefix"
-                        class="input-icon"
-                        src="../../assets/image/icon-passWord.png"
-                    >
+                <el-input placeholder="请输入密码 test" type="password" @focus="focusInput()"
+                 v-model="loginForm.passWord">
+                    <img slot="prefix" class="input-icon"
+                    src="../../assets/image/icon-passWord.png" >
                 </el-input>
             </div>
 
-            <div
-                class="form-item"
-                style="padding-top:25px"
-            >
-                <el-button
-                    style="width:100%"
-                    type="primary"
-                    @click="login()"
-                >
+            <div class="form-item" style="padding-top:25px">
+                <el-button style="width:100%" type="primary" @click="login()">
                     <span style="font-size:16px">登录</span>
                 </el-button>
             </div>
 
             <div class="form-item">
-                <el-checkbox
-                    v-model="isAutoLogin"
-                    @click="clickAutoLogin()"
-                >下次自动登录</el-checkbox>
-                <div
-                    class="forget-password-font"
-                    @click="clickForgetPassWord()"
-                >忘记密码</div>
+                <el-checkbox v-model="isAutoLogin" @click="clickAutoLogin()">下次自动登录</el-checkbox>
+                <div class="forget-password-font" @click="clickForgetPassWord()">忘记密码</div>
             </div>
         </div>
         <div class="studio-font-layout">@Fearless_Studio</div>
@@ -130,7 +102,7 @@
 </template>
 
 <script>
-import GLOBAL from '../../utils/GLOBAL';
+import { mapState } from 'vuex';
 
 export default {
     name: 'login',
@@ -154,12 +126,12 @@ export default {
                 this.FormDataErrorText = '用户名或密码不能为空';
                 return;
             }
-            if (userName !== GLOBAL.userName || passWord !== GLOBAL.passWord) {
+            if (userName !== this.userName || passWord !== this.passWord) {
                 this.isFormDataError = true;
                 this.FormDataErrorText = '用户名或密码错误';
                 return;
             }
-            GLOBAL.isLogin = true;
+            this.isLogin = true;
             this.$router.push({
                 name: 'index',
             });
@@ -174,7 +146,11 @@ export default {
         },
     },
 
-    computed: {},
+    computed: mapState([
+        'isLogin',
+        'userName',
+        'passWord',
+    ]),
     watch: {},
     components: {},
 };

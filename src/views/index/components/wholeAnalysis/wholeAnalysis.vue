@@ -1,5 +1,4 @@
 <style lang='scss' scoped>
-@import "../../../../styles/public.scss";
 @mixin layout-base {
     height: fit-content;
     margin: auto;
@@ -18,35 +17,32 @@
 <template>
     <div class="son-app">
         <!-- 选项区域 -->
-        <UserGroupSelect @changeSelectUserGroup="changeSelectUserGroup"></UserGroupSelect>
+        <UserGroupSelect belong="whole"></UserGroupSelect>
         <div class="option-layout">
-            <Index-Attribute-Selector @changeSelectIndex="changeSelectIndex"
-            @changeSelectAttribute="changeSelectAttribute"></Index-Attribute-Selector>
-            <div style="margin-top:15px;" v-if="selectedAttribute!==''">
+            <Index-Attribute-Selector belong="whole"></Index-Attribute-Selector>
+            <!-- <div style="margin-top:15px;" v-if="selectedAttribute!==''">
                 <el-button type="primary" size="small" @click="clickSearch()">查询</el-button>
-            </div>
+            </div> -->
         </div>
         <!-- 图 -->
-        <Chart></Chart>
+        <Chart belong="whole"></Chart>
         <!-- 表 -->
         <Table></Table>
     </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import UserGroupSelect from '../../../../components/UserGroupSelect/UserGroupSelect.vue';
-import IndexAttributeSelector from '../../../../components/IndexAttributeSelector/IndexAttributeSelector.vue';
-import Chart from '../../../../components/Chart/Chart.vue';
+import IndexAttributeSelector from '../../../../components/IndexAttributeSelector/index.vue';
+import Chart from '../../../../components/Chart/index.vue';
 import Table from '../../../../components/Table/Table.vue';
-
+// import { getData } from '../../../../api/chart';
 
 export default {
     name: 'wholeAnalysis',
     data() {
         return {
-            selectedIndex: '新增用户',
-            selectedAttribute: '',
-            selectedUserGroup: ['所有用户'],
             event_option: [
                 { value: '事件概览' },
                 { value: '存款' },
@@ -60,21 +56,12 @@ export default {
         clickSearch() {
             console.log(this.selectedUserGroup, this.selectedIndex, this.selectedAttribute);
         },
-        // 组件方法
-        changeSelectIndex(index) {
-            // 改变指标
-            this.selectedIndex = index;
-        },
-        changeSelectAttribute(attribute) {
-            // 改变属性选择
-            this.selectedAttribute = attribute;
-        },
-        changeSelectUserGroup(userGroup) {
-            // 选择用户群改变
-            this.selectedUserGroup = userGroup;
-        },
     },
-    computed: {},
+    computed: mapState({
+        selectedUserGroup: state => state.whole.userGroup,
+        selectedIndex: state => state.whole.index,
+        selectedAttribute: state => state.whole.attribute,
+    }),
     watch: {},
     components: {
         UserGroupSelect,

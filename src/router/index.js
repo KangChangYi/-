@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from '../store';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
     routes: [
         {
             path: '/',
@@ -70,3 +71,18 @@ export default new Router({
         },
     ],
 });
+
+
+// 未登陆时路由拦截
+router.beforeEach((to, from, next) => {
+    if (to.name !== 'login') {
+        if (store.state.isLogin === false) {
+            next(false);
+        } else next();
+    } else {
+        next();
+    }
+});
+
+
+export default router;
