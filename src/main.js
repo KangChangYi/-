@@ -28,6 +28,7 @@ router.beforeEach((to, from, next) => {
     }
 });
 
+
 Vue.config.productionTip = false;
 
 new Vue({

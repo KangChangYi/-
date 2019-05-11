@@ -44,7 +44,7 @@
 <template>
     <div class="son-app">
         <!-- 选项区域 -->
-        <userGroupSelect></userGroupSelect>
+        <UserGroupSelect></UserGroupSelect>
         <div class="option-layout">
             <div class="index-select-box">
                 <div>用户留存：</div>
@@ -176,7 +176,7 @@
 </template>
 
 <script>
-import userGroupSelect from '../../../../components/userGroupSelect.vue';
+import UserGroupSelect from '../../../../components/UserGroupSelect/UserGroupSelect.vue';
 
 export default {
     name: 'retainAnalysis',
@@ -362,7 +362,7 @@ export default {
             ],
         };
         myChart.setOption(option);
-        window.onresize = function () {
+        window.onresize = () => {
             myChart.resize();
             // myChart1.resize();    //若有多个图表变动，可多写
         };
@@ -394,7 +394,7 @@ export default {
     computed: {},
     watch: {},
     components: {
-        userGroupSelect,
+        UserGroupSelect,
     },
 };
 </script>

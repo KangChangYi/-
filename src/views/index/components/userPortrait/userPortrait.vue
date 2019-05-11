@@ -19,7 +19,7 @@
 
 <template>
     <div class="son-app">
-        <userGroupSelect></userGroupSelect>
+        <UserGroupSelect></UserGroupSelect>
         <div class="tool-layout">
             <span>21,200人</span>
             <div class="search-and-button">
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import userGroupSelect from '../../../../components/userGroupSelect.vue';
+import UserGroupSelect from '../../../../components/UserGroupSelect/UserGroupSelect.vue';
 
 export default {
     name: 'userPortrait',
@@ -78,6 +78,6 @@ export default {
     methods: {},
     computed: {},
     watch: {},
-    components: { userGroupSelect },
+    components: { UserGroupSelect },
 };
 </script>

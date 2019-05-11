@@ -73,19 +73,10 @@
         <div class="layout">
             <!-- header -->
             <div class="header-layout">
-                <div
-                    class="header-left-indent-box"
-                    :class="[isCollapse ? header_css_width_large : '']"
-                    @click="clickLeftIndent()"
-                >
-                    <img
-                        v-if="!isCollapse"
-                        src="../../assets/image/icon-left-indent.png"
-                    >
-                    <img
-                        v-else
-                        src="../../assets/image/icon-right-indent.png"
-                    >
+                <div class="header-left-indent-box"
+                :class="[isCollapse ? header_css_width_large : '']" @click="clickLeftIndent()" >
+                    <img v-if="!isCollapse" src="../../assets/image/icon-left-indent.png" >
+                    <img v-else src="../../assets/image/icon-right-indent.png" >
                 </div>
                 <div class="header-right-box">
                     <!-- 头像下拉菜单 -->
@@ -96,10 +87,7 @@
                         </div>
                         <el-dropdown-menu slot="dropdown">
                             <el-dropdown-item command="modifyPassWord">修改密码</el-dropdown-item>
-                            <el-dropdown-item
-                                command="logOut"
-                                divided
-                            >
+                            <el-dropdown-item command="logOut" divided>
                                 <span style="color:#F56C6C">退出登录</span>
                             </el-dropdown-item>
                         </el-dropdown-menu>
@@ -167,6 +155,7 @@ export default {
     components: { naviMenu },
     // 路由更新时改变pageTitle
     beforeRouteUpdate(to, from, next) {
+        console.log(123);
         this.pageTitle = titleMap.get(to.name);
         next();
     },

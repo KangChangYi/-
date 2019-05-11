@@ -17,13 +17,11 @@
         <div class="tool-layout">
             <span>当前用户群数：15</span>
             <div class="search-and-button">
-                <el-input
-                    placeholder="搜索用户群"
-                    prefix-icon="el-icon-search"
-                    v-model="searchUserGroup"
-                    style="width:200px;margin-right:15px;"
-                ></el-input>
-                <el-button type="primary">创建用户群</el-button>
+                <el-input placeholder="搜索用户群" prefix-icon="el-icon-search"
+                    v-model="searchUserGroup" style="width:200px;margin-right:15px;"></el-input>
+                <el-button type="primary" @click="showCreateUserGroupDialog()">
+                    创建用户群
+                </el-button>
             </div>
         </div>
         <div class="table-layout">
@@ -34,14 +32,20 @@
                 <!-- <el-table-column prop="operation" label="操作"></el-table-column> -->
             </el-table>
         </div>
+        <!-- 新建用户群对话框 -->
+        <UserGroupDialog :show="show"
+        @closeCreateUserGroupDialog="closeCreateUserGroupDialog"></UserGroupDialog>
     </div>
 </template>
 
 <script>
+import UserGroupDialog from '../../../../components/UserGroupDialog/UserGroupDialog.vue';
+
 export default {
     name: 'userGroup',
     data() {
         return {
+            show: false,
             searchUserGroup: '',
             tableData: [
                 {
@@ -68,9 +72,18 @@ export default {
         };
     },
     created() {},
-    methods: {},
+    methods: {
+        showCreateUserGroupDialog() {
+            this.show = true;
+        },
+        closeCreateUserGroupDialog() {
+            this.show = false;
+        },
+    },
     computed: {},
     watch: {},
-    components: {},
+    components: {
+        UserGroupDialog,
+    },
 };
 </script>

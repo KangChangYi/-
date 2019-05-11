@@ -6,6 +6,9 @@
 </template>
 
 <script>
+// 引入mock
+require('./mock/index.js');
+
 export default {
     name: 'app',
     data() {
