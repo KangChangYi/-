@@ -86,8 +86,9 @@
                             <i class="el-icon-caret-bottom"></i>
                         </div>
                         <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item command="modifyPassWord">修改密码</el-dropdown-item>
-                            <el-dropdown-item command="logOut" divided>
+                            <el-dropdown-item command="项目设置">项目设置</el-dropdown-item>
+                            <el-dropdown-item command="修改密码">修改密码</el-dropdown-item>
+                            <el-dropdown-item command="登出" divided>
                                 <span style="color:#F56C6C">退出登录</span>
                             </el-dropdown-item>
                         </el-dropdown-menu>
@@ -108,16 +109,17 @@ import naviMenu from './components/naviMenu/naviMenu.vue';
 
 const titleMap = new Map();
 titleMap
-    .set('seeBoard', '看板')
-    .set('receiveVisitor', '获客渠道')
     .set('wholeAnalysis', '整体分析')
+    .set('receiveVisitor', '获客渠道')
     .set('eventAnalysis', '事件分析')
     .set('flowAnalysis', '流量分析')
     .set('terminalAnalysis', '终端分析')
     .set('funnelAnalysis', '漏斗分析')
     .set('retainAnalysis', '留存分析')
     .set('userGroup', '用户群')
-    .set('userPortrait', '用户画像');
+    .set('userPortrait', '用户画像')
+    .set('projectSetting', '项目设置')
+    .set('seeBoard', '看板');
 export default {
     name: 'index',
     data() {
@@ -126,7 +128,7 @@ export default {
             header_css_width_large: 'header-width-large',
             // 导航栏是否收缩
             isCollapse: false,
-            pageTitle: '看板',
+            pageTitle: '整体分析',
         };
     },
     created() { },
@@ -135,7 +137,7 @@ export default {
             this.isCollapse = !this.isCollapse;
         },
         clickDropDown(command) {
-            if (command === 'logOut') {
+            if (command === '登出') {
                 this.$confirm('即将退出登录, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
@@ -147,6 +149,10 @@ export default {
                     .catch(() => {
                         this.$message('取消登出!');
                     });
+            } else if (command === '项目设置') {
+                this.$router.push({
+                    name: 'projectSetting',
+                });
             }
         },
     },

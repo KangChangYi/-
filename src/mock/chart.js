@@ -8,28 +8,36 @@ const getChartData = function () {
         data: [
             {
                 userGroup: '所有用户',
+                index: '新增用户',
+                attribute: '',
                 list: {
-                    // 属性 id 是一个自增数，起始值为 1，每次增 1
-                    '05-03': Random.integer(0, 1000),
-                    '05-04': Random.integer(0, 1000),
-                    '05-05': Random.integer(0, 1000),
-                    '05-06': Random.integer(0, 1000),
+                    '05-6': Random.integer(100, 700),
+                    '05-7': Random.integer(100, 700),
+                    '05-8': Random.integer(100, 700),
+                    '05-9': Random.integer(100, 700),
+                    '05-10': Random.integer(100, 700),
+                    '05-11': Random.integer(100, 700),
+                    '05-12': Random.integer(100, 700),
                 },
             },
             {
-                userGroup: '活跃用户',
+                userGroup: '已注册用户',
+                index: '新增用户',
+                attribute: '',
                 list: {
                     // 属性 id 是一个自增数，起始值为 1，每次增 1
-                    '05-03': Random.integer(0, 1000),
-                    '05-04': Random.integer(0, 1000),
-                    '05-05': Random.integer(0, 1000),
-                    '05-06': Random.integer(0, 1000),
+                    '05-6': Random.integer(100, 700),
+                    '05-7': Random.integer(100, 700),
+                    '05-8': Random.integer(100, 700),
+                    '05-9': Random.integer(100, 700),
+                    '05-10': Random.integer(100, 700),
+                    '05-11': Random.integer(100, 700),
+                    '05-12': Random.integer(100, 700),
                 },
             },
         ],
     });
 };
-
 
 const updateEvent = Mock.mock({
     msg: '修改事件成功',

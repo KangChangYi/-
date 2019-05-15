@@ -9,9 +9,11 @@ import { getUserGroup, getAttribute } from './analysisIndex';
 // 获取整体分析页面  指标列表
 import { getIndexGroupOption } from './wholeAnalysis';
 
+// 获取用户列表
+import { getUserList } from './getUserList';
 // 配置Ajax请求延时，可用来测试网络延迟大时项目中一些效果
 Mock.setup({
-    timeout: 500,
+    timeout: 50,
 });
 
 // ?data=visitorInfo
@@ -23,7 +25,7 @@ Mock.mock('http://localhost:8001/getData', getChartData);
 Mock.mock('http://localhost:8001/getUserGroup', getUserGroup);
 Mock.mock('http://localhost:8001/getIndexGroupOption', getIndexGroupOption);
 Mock.mock('http://localhost:8001/getAttribute', getAttribute);
-
+Mock.mock('http://localhost:8001/getUserList', getUserList);
 Mock.mock('http://localhost:8001/event/update', updateEvent);
 Mock.mock('http://localhost:8001/event/add', addEvent);
 export default Mock;

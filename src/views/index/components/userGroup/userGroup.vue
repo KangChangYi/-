@@ -1,5 +1,13 @@
 <style lang='scss' scoped>
-@import "../../../../styles/public.scss";
+@mixin layout-base {
+    height: fit-content;
+    margin: auto;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    background: white;
+    box-shadow: $shadow-border-light;
+    border-radius: 3px;
+}
 .tool-layout {
     margin-bottom: 15px;
     @include displayCenter($justify-content:space-between);
@@ -8,6 +16,7 @@
     }
 }
 .table-layout {
+    @include layout-base;
     box-shadow: $shadow-border-light;
 }
 </style>
@@ -25,63 +34,42 @@
             </div>
         </div>
         <div class="table-layout">
-            <el-table :data="tableData" style="width: 100%">
-                <el-table-column prop="state" label="状态" width="180"></el-table-column>
-                <el-table-column prop="groupName" label="分群名称" width="180"></el-table-column>
-                <el-table-column prop="groupSize" label="分群人数"></el-table-column>
+            <el-table :data="userGroup"  style="width: 100%">
+                <el-table-column prop="enable" label="状态" width="180"></el-table-column>
+                <el-table-column prop="value" label="分群名称" width="180"></el-table-column>
+                <el-table-column prop="number" label="分群人数"></el-table-column>
                 <!-- <el-table-column prop="operation" label="操作"></el-table-column> -->
             </el-table>
         </div>
         <!-- 新建用户群对话框 -->
-        <UserGroupDialog :show="show"
-        @closeCreateUserGroupDialog="closeCreateUserGroupDialog"></UserGroupDialog>
+        <UserGroupDialog ref="Dialog"></UserGroupDialog>
     </div>
 </template>
 
 <script>
-import UserGroupDialog from '../../../../components/UserGroupDialog/UserGroupDialog.vue';
+import { mapState } from 'vuex';
+import UserGroupDialog from '../../../../components/UserGroupDialog/index.vue';
 
 export default {
     name: 'userGroup',
     data() {
         return {
-            show: false,
             searchUserGroup: '',
-            tableData: [
-                {
-                    state: '已启用',
-                    groupName: '新用户',
-                    groupSize: '3410',
-                },
-                {
-                    state: '已启用',
-                    groupName: '活跃用户',
-                    groupSize: '1232',
-                },
-                {
-                    state: '已启用',
-                    groupName: '连续三天登录用户',
-                    groupSize: '173',
-                },
-                {
-                    state: '已启用',
-                    groupName: '沉默用户',
-                    groupSize: '1504',
-                },
-            ],
         };
     },
     created() {},
+    mounted() {
+        console.log(this.userGroup);
+    },
     methods: {
         showCreateUserGroupDialog() {
-            this.show = true;
-        },
-        closeCreateUserGroupDialog() {
-            this.show = false;
+            this.$refs.Dialog.showCreateUserGroup();
         },
     },
-    computed: {},
-    watch: {},
+    computed: mapState([
+        'userGroup',
+    ]),
+    watch: { },
     components: {
         UserGroupDialog,
     },

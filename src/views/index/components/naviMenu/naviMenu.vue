@@ -64,8 +64,8 @@
                 </template>
                 <el-menu-item index="wholeAnalysis">整体分析</el-menu-item>
                 <el-menu-item index="eventAnalysis">事件分析</el-menu-item>
-                <el-menu-item index="terminalAnalysis">终端分析</el-menu-item>
-                <el-menu-item index="funnelAnalysis">漏斗分析</el-menu-item>
+                <!-- <el-menu-item index="terminalAnalysis">终端分析</el-menu-item> -->
+                <!-- <el-menu-item index="funnelAnalysis">漏斗分析</el-menu-item> -->
                 <el-menu-item index="retainAnalysis">留存分析</el-menu-item>
             </el-submenu>
 

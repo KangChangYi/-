@@ -47,15 +47,14 @@
         <el-button type="primary"  size="small" style="margin-top:15px;"
             @click.stop="clickConfirm()" v-if="isShowUserGroupSelect" >确定
         </el-button>
-       <!-- 新建用户群对话框 -->
-        <UserGroupDialog :show="show"
-        @closeCreateUserGroupDialog="closeCreateUserGroupDialog"></UserGroupDialog>
+        <!-- 新建用户群对话框 -->
+        <UserGroupDialog ref="Dialog"></UserGroupDialog>
     </div>
 </template>
 
 <script>
 import { getUserGroup } from '../../api/userGroup';
-import UserGroupDialog from '../UserGroupDialog/UserGroupDialog.vue';
+import UserGroupDialog from '../UserGroupDialog/index.vue';
 
 export default {
     name: 'userGroupSelect',
@@ -90,10 +89,7 @@ export default {
         //     //  @change="changeSelectUserGroup()"
         // },
         showCreateUserGroupDialog() {
-            this.show = true;
-        },
-        closeCreateUserGroupDialog() {
-            this.show = false;
+            this.$refs.Dialog.showCreateUserGroup();
         },
         clickConfirm() {
             if (this.belong) {

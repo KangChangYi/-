@@ -48,45 +48,26 @@
         <div class="option-layout">
             <div class="event-select-box">
                 <div>事件：</div>
-                <el-select
-                    @change="changeSelectEventGroup()"
-                    v-model="selectedEventGroup"
-                    placeholder="请选择事件分组"
-                >
-                    <el-option
-                        v-for="item in event_group_option"
-                        :key="item.value"
-                        :value="item.value"
-                    ></el-option>
+                <el-select  @change="changeSelectEventGroup()" v-model="selectedEventGroup"
+                placeholder="请选择事件分组" >
+                    <el-option v-for="item in event_group_option" :key="item.value"
+                        :value="item.value" >
+                    </el-option>
                 </el-select>
-                <el-select
-                    @change="changeSelectEvent()"
-                    v-model="selectedEvent"
-                    placeholder="请选择事件"
-                    style="margin-left:10px;"
-                >
-                    <el-option
-                        v-for="item in event_option"
-                        :key="item.value"
-                        :value="item.value"
-                    ></el-option>
+                <el-select @change="changeSelectEvent()" v-model="selectedEvent"
+                    placeholder="请选择事件" style="margin-left:10px;" >
+                    <el-option v-for="item in event_option" :key="item.value"
+                        :value="item.value">
+                    </el-option>
                 </el-select>
-                <div
-                    class="event-attribute-box"
-                    v-if="selectedEvent!='事件概览'"
-                >
+
+                <div class="event-attribute-box" v-if="selectedEvent!='事件概览'">
                     <div style="margin-right:10px;">按</div>
-                    <el-select
-                        @change="changeSelectEvent()"
-                        v-model="selectedEventAttribute"
-                        placeholder="请选择属性"
-                        clearable
-                    >
-                        <el-option
-                            v-for="item in event_attribute"
-                            :key="item.value"
-                            :value="item.value"
-                        ></el-option>
+                    <el-select @change="changeSelectEvent()" v-model="selectedEventAttribute"
+                        placeholder="请选择属性" clearable >
+                        <el-option v-for="item in event_attribute" :key="item.value"
+                            :value="item.value">
+                        </el-option>
                     </el-select>
                     <div style="margin-left:10px;">细分</div>
                 </div>
@@ -193,7 +174,7 @@
 </template>
 
 <script>
-import UserGroupSelect from '../../../../components/UserGroupSelect/UserGroupSelect.vue';
+import UserGroupSelect from '../../../../components/UserGroupSelect/index.vue';
 
 export default {
     name: 'eventAnalysis',

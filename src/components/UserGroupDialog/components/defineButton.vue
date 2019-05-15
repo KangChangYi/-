@@ -22,12 +22,15 @@
     <div class="condition-layout">
         <condition-cell v-if="cellNumber!=0" :conditionType.sync="conditionType"
          number='1' @deleteConditionCell="deleteConditionCell"></condition-cell>
+
         <span v-if="cellNumber!=0">并且</span>
         <condition-cell v-if="cellNumber > 1" :conditionType.sync="conditionType"
              number='2' @deleteConditionCell="deleteConditionCell"></condition-cell>
+
         <span v-if="cellNumber > 1">并且</span>
         <condition-cell v-if="cellNumber > 2" :conditionType.sync="conditionType"
              number='3' @deleteConditionCell="deleteConditionCell"></condition-cell>
+
         <!-- <span v-if="cellNumber > 2">并且</span> -->
         <div class="button-box" v-if="cellNumber < 3">
             <el-button type="info" size="small" plain @click="doOrdont()">做过(没做过)..</el-button>

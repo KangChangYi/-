@@ -176,7 +176,7 @@
 </template>
 
 <script>
-import UserGroupSelect from '../../../../components/UserGroupSelect/UserGroupSelect.vue';
+import UserGroupSelect from '../../../../components/UserGroupSelect/index.vue';
 
 export default {
     name: 'retainAnalysis',

@@ -1,5 +1,3 @@
-
-
 function lineChart(myChart, chartData, defaultOption) {
     // 设置x轴坐标
     defaultOption.xAxis = {
@@ -18,7 +16,9 @@ function lineChart(myChart, chartData, defaultOption) {
     console.log(defaultOption.series);
     myChart.setOption(defaultOption, true);
 }
+
 function barChart(myChart, chartData, defaultOption) {
+    console.log(chartData);
     const xArray = Object.keys(chartData[0].list);
     const x = `${xArray[0]}~${xArray[xArray.length - 1]}`;
     defaultOption.xAxis = {
@@ -37,8 +37,10 @@ function barChart(myChart, chartData, defaultOption) {
         };
     }
     // 绘制图表
+    console.log(defaultOption);
     myChart.setOption(defaultOption, true);
 }
+
 function pieChart(myChart, chartData, defaultOption) {
     // 绘制图表
     myChart.setOption(defaultOption, true);

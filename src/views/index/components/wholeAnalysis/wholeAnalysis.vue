@@ -25,18 +25,18 @@
             </div> -->
         </div>
         <!-- 图 -->
-        <Chart belong="whole"></Chart>
+        <Chart belong="whole" v-loading="isLoading"></Chart>
         <!-- 表 -->
-        <Table></Table>
+        <Table belong="whole" v-loading="isLoading"></Table>
     </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
-import UserGroupSelect from '../../../../components/UserGroupSelect/UserGroupSelect.vue';
+import UserGroupSelect from '../../../../components/UserGroupSelect/index.vue';
 import IndexAttributeSelector from '../../../../components/IndexAttributeSelector/index.vue';
 import Chart from '../../../../components/Chart/index.vue';
-import Table from '../../../../components/Table/Table.vue';
+import Table from '../../../../components/Table/index.vue';
 // import { getData } from '../../../../api/chart';
 
 export default {
@@ -50,19 +50,65 @@ export default {
             ],
         };
     },
-    created() { },
-    mounted() { },
+    created() {
+    },
+    mounted() {
+        const condition = this.getCondition();
+        this.$store.dispatch('changeChartData', {
+            page: 'whole',
+            value: condition,
+        });
+    },
     methods: {
-        clickSearch() {
-            console.log(this.selectedUserGroup, this.selectedIndex, this.selectedAttribute);
+        // clickSearch() {
+        //     console.log(this.selectedUserGroup, this.selectedIndex, this.selectedAttribute);
+        // },
+        getCondition() {
+            const { userGroup, index, attribute } = this;
+            return {
+                userGroup,
+                index,
+                attribute,
+            };
         },
     },
     computed: mapState({
-        selectedUserGroup: state => state.whole.userGroup,
-        selectedIndex: state => state.whole.index,
-        selectedAttribute: state => state.whole.attribute,
+        userGroup: state => state.whole.userGroup,
+        index: state => state.whole.index,
+        attribute: state => state.whole.attribute,
+        date: state => state.whole.date,
+        isLoading: state => state.whole.isLoading,
     }),
-    watch: {},
+    watch: {
+        userGroup() {
+            const condition = this.getCondition();
+            this.$store.dispatch('changeChartData', {
+                page: 'whole',
+                value: condition,
+            });
+        },
+        index() {
+            const condition = this.getCondition();
+            this.$store.dispatch('changeChartData', {
+                page: 'whole',
+                value: condition,
+            });
+        },
+        attribute() {
+            const condition = this.getCondition();
+            this.$store.dispatch('changeChartData', {
+                page: 'whole',
+                value: condition,
+            });
+        },
+        date() {
+            const condition = this.getCondition();
+            this.$store.dispatch('changeChartData', {
+                page: 'whole',
+                value: condition,
+            });
+        },
+    },
     components: {
         UserGroupSelect,
         'Index-Attribute-Selector': IndexAttributeSelector,

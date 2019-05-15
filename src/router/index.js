@@ -67,6 +67,11 @@ const router = new Router({
                     name: 'userPortrait',
                     component: () => import('../views/index/components/userPortrait/userPortrait.vue'),
                 },
+                {
+                    path: '/projectSetting',
+                    name: 'projectSetting',
+                    component: () => import('../views/index/components/projectSetting/index.vue'),
+                },
             ],
         },
     ],

@@ -6,6 +6,10 @@ module.exports = {
             type: 'shadow', // 默认为直线，可选为：'line' | 'shadow'
         },
     },
+    title: {
+        text: '',
+        left: 5,
+    },
     legend: {},
     grid: {
         left: '3%',
@@ -20,6 +24,9 @@ module.exports = {
         },
         axisTick: {
             show: false,
+        },
+        axisLabel: {
+            interval: 0,
         },
         data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
     },

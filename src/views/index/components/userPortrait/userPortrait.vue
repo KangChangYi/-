@@ -1,22 +1,3 @@
-<style lang='scss' scoped>
-@import "../../../../styles/public.scss";
-.tool-layout {
-    margin-top: 30px;
-    margin-bottom: 15px;
-    @include displayCenter($justify-content:space-between);
-    .search-and-button {
-        @include displayCenter($justify-content:space-between);
-    }
-    span {
-        font-size: $font-size-large;
-        color: $text-color-primary;
-    }
-}
-.table-layout {
-    box-shadow: $shadow-border-light;
-}
-</style>
-
 <template>
     <div class="son-app">
         <UserGroupSelect></UserGroupSelect>
@@ -32,52 +13,90 @@
                 </el-radio-group>
             </div>
         </div>
-        <div class="table-layout">
+        <div class="table-layout" v-if="listOrPortrait==='列表'">
             <el-table :data="tableData" style="width: 100%">
-                <el-table-column prop="date" label="日期" width="180"></el-table-column>
-                <el-table-column prop="name" label="姓名" width="180"></el-table-column>
-                <el-table-column prop="address" label="地址"></el-table-column>
+                <el-table-column prop="guid" label="ID" width="200"></el-table-column>
+                <el-table-column prop="name" label="姓名" width="200"></el-table-column>
+                <el-table-column prop="ip" label="IP"></el-table-column>
+                <el-table-column prop="email" label="邮箱"></el-table-column>
+                 <el-table-column prop="address" label="地址"></el-table-column>
             </el-table>
+        </div>
+
+        <div class="chart-layout" v-else>
+             <UserPortraitChart-City chart="chart1" type="address" :tableData.sync="tableData">
+             </UserPortraitChart-City>
+             <UserPortraitChart-Browser chart="chart2" type="browser" :tableData.sync="tableData">
+             </UserPortraitChart-Browser>
         </div>
     </div>
 </template>
 
 <script>
-import UserGroupSelect from '../../../../components/UserGroupSelect/UserGroupSelect.vue';
+import { getUserList } from '../../../../api/userGroup';
+import UserGroupSelect from '../../../../components/UserGroupSelect/index.vue';
+import UserPortraitChart from '../../../../components/UserPortraitChart/index.vue';
 
 export default {
     name: 'userPortrait',
     data() {
         return {
-            listOrPortrait: '',
+            listOrPortrait: '列表',
             tableData: [
-                {
-                    date: '2016-05-02',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1518 弄',
-                },
-                {
-                    date: '2016-05-04',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1517 弄',
-                },
-                {
-                    date: '2016-05-01',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1519 弄',
-                },
-                {
-                    date: '2016-05-03',
-                    name: '王小虎',
-                    address: '上海市普陀区金沙江路 1516 弄',
-                },
+                // {
+                //     date: '2016-05-02',
+                //     name: '王小虎',
+                //     address: '上海市普陀区金沙江路 1518 弄',
+                // },
             ],
         };
     },
-    created() {},
+    created() {
+        getUserList().then((res) => {
+            this.tableData = res.data.userList;
+            console.log(res.data);
+        });
+    },
     methods: {},
     computed: {},
-    watch: {},
-    components: { UserGroupSelect },
+    watch: { },
+    components: {
+        UserGroupSelect,
+        UserPortraitChartCity: UserPortraitChart,
+        UserPortraitChartBrowser: UserPortraitChart,
+    },
 };
 </script>
+
+<style lang='scss' scoped>
+@mixin layout-base {
+    height: fit-content;
+    margin: auto;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    background: white;
+    box-shadow: $shadow-border-light;
+    border-radius: 3px;
+}
+.tool-layout {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    @include displayCenter($justify-content:space-between);
+    .search-and-button {
+        @include displayCenter($justify-content:space-between);
+    }
+    span {
+        font-size: $font-size-large;
+        color: $text-color-primary;
+    }
+}
+.table-layout,
+.chart-layout {
+    @include layout-base;
+    margin: unset;
+    box-shadow: $shadow-border-light;
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+</style>

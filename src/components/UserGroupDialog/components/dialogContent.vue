@@ -20,7 +20,8 @@
     <div>
         <div class="dialog-content-box">
             <span>名称：</span>
-            <el-input v-model="input" style="width:250px" placeholder="用户群名称"></el-input>
+            <el-input v-model="userGroupName" @change="change" style="width:250px"
+             placeholder="用户群名称"></el-input>
             </div>
         <div class="dialog-content-box">
             <span id="define">定义：</span>
@@ -35,7 +36,9 @@ import defineButton from './defineButton.vue';
 export default {
     name: 'dialogContent',
     data() {
-        return {};
+        return {
+            userGroupName: '',
+        };
     },
     created() {},
     methods: {
@@ -44,6 +47,9 @@ export default {
         },
         closeCreateUserGroupDialog() {
             this.$refs.defineButton.closeCreateUserGroupDialog();
+        },
+        change() {
+            this.$emit('changeUserGroupText', this.userGroupName);
         },
     },
     computed: {},

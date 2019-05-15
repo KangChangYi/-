@@ -12,3 +12,16 @@ export function getUserGroup(email, password) {
         },
     });
 }
+
+
+export function getUserList(email, password) {
+    return request({
+        url: '/getUserList',
+        method: 'get',
+        data: {
+            email,
+            password,
+            name: email,
+        },
+    });
+}
