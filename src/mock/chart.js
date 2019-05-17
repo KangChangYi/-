@@ -2,39 +2,257 @@ import Mock from 'mockjs';
 
 const { Random } = Mock;
 
-
 const getChartData = function () {
     return Mock.mock({
-        data: [
-            {
-                userGroup: '所有用户',
-                index: '新增用户',
-                attribute: '',
+        data: [{
+            userGroup: '所有用户',
+            // 指标
+            index: [{
+                name: '新增用户',
                 list: {
-                    '05-6': Random.integer(100, 700),
-                    '05-7': Random.integer(100, 700),
-                    '05-8': Random.integer(100, 700),
-                    '05-9': Random.integer(100, 700),
-                    '05-10': Random.integer(100, 700),
-                    '05-11': Random.integer(100, 700),
-                    '05-12': Random.integer(100, 700),
+                    '05-14': Random.integer(100, 700),
+                    '05-15': Random.integer(100, 700),
+                    '05-16': Random.integer(100, 700),
+                    '05-17': Random.integer(100, 700),
+                    '05-18': Random.integer(100, 700),
+                    '05-19': Random.integer(100, 700),
+                    '05-20': Random.integer(100, 700),
+                },
+            }, {
+                name: '活跃用户',
+                list: {
+                    '05-14': Random.integer(100, 700),
+                    '05-15': Random.integer(100, 700),
+                    '05-16': Random.integer(100, 700),
+                    '05-17': Random.integer(100, 700),
+                    '05-18': Random.integer(100, 700),
+                    '05-19': Random.integer(100, 700),
+                    '05-20': Random.integer(100, 700),
+                },
+            }, {
+                name: '沉默用户',
+                list: {
+                    '05-14': Random.integer(100, 700),
+                    '05-15': Random.integer(100, 700),
+                    '05-16': Random.integer(100, 700),
+                    '05-17': Random.integer(100, 700),
+                    '05-18': Random.integer(100, 700),
+                    '05-19': Random.integer(100, 700),
+                    '05-20': Random.integer(100, 700),
+                },
+            }, {
+                name: '访问次数',
+                list: {
+                    '05-14': Random.integer(100, 200),
+                    '05-15': Random.integer(100, 200),
+                    '05-16': Random.integer(100, 200),
+                    '05-17': Random.integer(100, 200),
+                    '05-18': Random.integer(100, 200),
+                    '05-19': Random.integer(100, 200),
+                    '05-20': Random.integer(100, 200),
+                },
+            }],
+            // 属性
+            attribute: [{
+                name: '省份',
+                list: {
+                    '05-14': Random.integer(100, 700),
+                    '05-15': Random.integer(100, 700),
+                    '05-16': Random.integer(100, 700),
+                    '05-17': Random.integer(100, 700),
+                    '05-18': Random.integer(100, 700),
+                    '05-19': Random.integer(100, 700),
+                    '05-20': Random.integer(100, 700),
                 },
             },
             {
-                userGroup: '已注册用户',
-                index: '新增用户',
-                attribute: '',
+                name: '浏览器品牌',
                 list: {
-                    // 属性 id 是一个自增数，起始值为 1，每次增 1
-                    '05-6': Random.integer(100, 700),
-                    '05-7': Random.integer(100, 700),
-                    '05-8': Random.integer(100, 700),
-                    '05-9': Random.integer(100, 700),
-                    '05-10': Random.integer(100, 700),
-                    '05-11': Random.integer(100, 700),
-                    '05-12': Random.integer(100, 700),
+                    '05-14': Random.integer(100, 700),
+                    '05-15': Random.integer(100, 700),
+                    '05-16': Random.integer(100, 700),
+                    '05-17': Random.integer(100, 700),
+                    '05-18': Random.integer(100, 700),
+                    '05-19': Random.integer(100, 700),
+                    '05-20': Random.integer(100, 700),
+                },
+            }],
+            list: {
+                '05-14': Random.integer(100, 700),
+                '05-15': Random.integer(100, 700),
+                '05-16': Random.integer(100, 700),
+                '05-17': Random.integer(100, 700),
+                '05-18': Random.integer(100, 700),
+                '05-19': Random.integer(100, 700),
+                '05-20': Random.integer(100, 700),
+            },
+        },
+        {
+            userGroup: '最近 7 天付款用户',
+            // 指标
+            index: [{
+                name: '新增用户',
+                list: {
+                    '05-14': Random.integer(100, 700),
+                    '05-15': Random.integer(100, 700),
+                    '05-16': Random.integer(100, 700),
+                    '05-17': Random.integer(100, 700),
+                    '05-18': Random.integer(100, 700),
+                    '05-19': Random.integer(100, 700),
+                    '05-20': Random.integer(100, 700),
+                },
+            }, {
+                name: '活跃用户',
+                list: {
+                    '05-14': Random.integer(100, 700),
+                    '05-15': Random.integer(100, 700),
+                    '05-16': Random.integer(100, 700),
+                    '05-17': Random.integer(100, 700),
+                    '05-18': Random.integer(100, 700),
+                    '05-19': Random.integer(100, 700),
+                    '05-20': Random.integer(100, 700),
+                },
+            }, {
+                name: '沉默用户',
+                list: {
+                    '05-14': Random.integer(100, 700),
+                    '05-15': Random.integer(100, 700),
+                    '05-16': Random.integer(100, 700),
+                    '05-17': Random.integer(100, 700),
+                    '05-18': Random.integer(100, 700),
+                    '05-19': Random.integer(100, 700),
+                    '05-20': Random.integer(100, 700),
+                },
+            }, {
+                name: '访问次数',
+                list: {
+                    '05-14': Random.integer(100, 200),
+                    '05-15': Random.integer(100, 200),
+                    '05-16': Random.integer(100, 200),
+                    '05-17': Random.integer(100, 200),
+                    '05-18': Random.integer(100, 200),
+                    '05-19': Random.integer(100, 200),
+                    '05-20': Random.integer(100, 200),
+                },
+            }],
+            // 属性
+            attribute: [{
+                name: '省份',
+                list: {
+                    '05-14': Random.integer(100, 700),
+                    '05-15': Random.integer(100, 700),
+                    '05-16': Random.integer(100, 700),
+                    '05-17': Random.integer(100, 700),
+                    '05-18': Random.integer(100, 700),
+                    '05-19': Random.integer(100, 700),
+                    '05-20': Random.integer(100, 700),
                 },
             },
+            {
+                name: '浏览器品牌',
+                list: {
+                    '05-14': Random.integer(100, 700),
+                    '05-15': Random.integer(100, 700),
+                    '05-16': Random.integer(100, 700),
+                    '05-17': Random.integer(100, 700),
+                    '05-18': Random.integer(100, 700),
+                    '05-19': Random.integer(100, 700),
+                    '05-20': Random.integer(100, 700),
+                },
+            }],
+            list: {
+                '05-14': Random.integer(100, 700),
+                '05-15': Random.integer(100, 700),
+                '05-16': Random.integer(100, 700),
+                '05-17': Random.integer(100, 700),
+                '05-18': Random.integer(100, 700),
+                '05-19': Random.integer(100, 700),
+                '05-20': Random.integer(100, 700),
+            },
+        },
+        {
+            userGroup: '活跃用户',
+            // 指标
+            index: [{
+                name: '新增用户',
+                list: {
+                    '05-14': Random.integer(100, 700),
+                    '05-15': Random.integer(100, 700),
+                    '05-16': Random.integer(100, 700),
+                    '05-17': Random.integer(100, 700),
+                    '05-18': Random.integer(100, 700),
+                    '05-19': Random.integer(100, 700),
+                    '05-20': Random.integer(100, 700),
+                },
+            }, {
+                name: '活跃用户',
+                list: {
+                    '05-14': Random.integer(100, 700),
+                    '05-15': Random.integer(100, 700),
+                    '05-16': Random.integer(100, 700),
+                    '05-17': Random.integer(100, 700),
+                    '05-18': Random.integer(100, 700),
+                    '05-19': Random.integer(100, 700),
+                    '05-20': Random.integer(100, 700),
+                },
+            }, {
+                name: '沉默用户',
+                list: {
+                    '05-14': Random.integer(100, 700),
+                    '05-15': Random.integer(100, 700),
+                    '05-16': Random.integer(100, 700),
+                    '05-17': Random.integer(100, 700),
+                    '05-18': Random.integer(100, 700),
+                    '05-19': Random.integer(100, 700),
+                    '05-20': Random.integer(100, 700),
+                },
+            }, {
+                name: '访问次数',
+                list: {
+                    '05-14': Random.integer(100, 200),
+                    '05-15': Random.integer(100, 200),
+                    '05-16': Random.integer(100, 200),
+                    '05-17': Random.integer(100, 200),
+                    '05-18': Random.integer(100, 200),
+                    '05-19': Random.integer(100, 200),
+                    '05-20': Random.integer(100, 200),
+                },
+            }],
+            // 属性
+            attribute: [{
+                name: '省份',
+                list: {
+                    '05-14': Random.integer(100, 700),
+                    '05-15': Random.integer(100, 700),
+                    '05-16': Random.integer(100, 700),
+                    '05-17': Random.integer(100, 700),
+                    '05-18': Random.integer(100, 700),
+                    '05-19': Random.integer(100, 700),
+                    '05-20': Random.integer(100, 700),
+                },
+            },
+            {
+                name: '浏览器品牌',
+                list: {
+                    '05-14': Random.integer(100, 700),
+                    '05-15': Random.integer(100, 700),
+                    '05-16': Random.integer(100, 700),
+                    '05-17': Random.integer(100, 700),
+                    '05-18': Random.integer(100, 700),
+                    '05-19': Random.integer(100, 700),
+                    '05-20': Random.integer(100, 700),
+                },
+            }],
+            list: {
+                '05-14': Random.integer(100, 700),
+                '05-15': Random.integer(100, 700),
+                '05-16': Random.integer(100, 700),
+                '05-17': Random.integer(100, 700),
+                '05-18': Random.integer(100, 700),
+                '05-19': Random.integer(100, 700),
+                '05-20': Random.integer(100, 700),
+            },
+        },
         ],
     });
 };

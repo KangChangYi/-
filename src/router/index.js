@@ -8,6 +8,9 @@ const router = new Router({
     routes: [
         {
             path: '/',
+            meta: {
+                title: '用户行为分析平台',
+            },
             name: 'login',
             component: () => import('../views/login/login.vue'),
         },
@@ -85,6 +88,7 @@ router.beforeEach((to, from, next) => {
             next(false);
         } else next();
     } else {
+        document.title = to.meta.title;
         next();
     }
 });

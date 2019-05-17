@@ -1,73 +1,12 @@
-<style lang='scss' scoped>
-@import "../../styles/public.scss";
-.app {
-    padding-top: 50px;
-    background: $base-color;
-}
-.logo-layout {
-    width: fit-content;
-    margin: auto;
-    img {
-        width: 150px;
-        height: 150px;
-    }
-}
-.login-form-layout {
-    width: 480px;
-    height: fit-content;
-    background: white;
-    margin: auto;
-    margin-top: 50px;
-    padding: 40px 0 20px 0;
-    border-radius: 3px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    box-sizing: border-box;
-    .form-item {
-        width: 80%;
-        margin: auto;
-        margin-bottom: 20px;
-        color: $text-color-base;
-        #title {
-            padding-bottom: 5px;
-        }
-        .input-icon {
-            width: 18px;
-            height: 18px;
-            padding: 10px 0 0 3px;
-        }
-        .forget-password-font {
-            color: $text-color-secondary;
-            float: right;
-            cursor: pointer;
-            &:hover {
-                color: inherit;
-            }
-        }
-    }
-}
-.tip-text {
-    width: fit-content;
-    margin: auto;
-    padding: 10px 5px 0 0;
-    color: #f56c6c;
-}
-.studio-font-layout {
-    width: fit-content;
-    color: white;
-    margin: auto;
-    margin-top: 70px;
-}
-</style>
-
 <template>
     <div class="app">
         <div class="logo-layout">
-            <img src="../../assets/image/logo-fearless.png">
+            <img src="../../assets/image/logo.png">
         </div>
         <div class="login-form-layout">
             <div class="form-item">
                 <div id="title">用户名</div>
-                <el-input placeholder="请输入用户名 test" @focus="focusInput()"
+                <el-input placeholder="请输入用户名" @focus="focusInput()"
                     v-model="loginForm.userName" >
                     <img slot="prefix" class="input-icon"
                     src="../../assets/image/icon-userName.png" >
@@ -79,7 +18,7 @@
 
             <div class="form-item">
                 <div id="title">密码</div>
-                <el-input placeholder="请输入密码 test" type="password" @focus="focusInput()"
+                <el-input placeholder="请输入密码" type="password" @focus="focusInput()"
                  v-model="loginForm.passWord">
                     <img slot="prefix" class="input-icon"
                     src="../../assets/image/icon-passWord.png" >
@@ -155,3 +94,62 @@ export default {
     components: {},
 };
 </script>
+
+<style lang='scss' scoped>
+.app {
+    padding-top: 50px;
+    background: $base-color;
+}
+.logo-layout {
+    width: fit-content;
+    margin: auto;
+    img {
+        width: 230px;
+        height: 230px;
+    }
+}
+.login-form-layout {
+    width: 480px;
+    height: fit-content;
+    background: white;
+    margin: auto;
+    padding: 40px 0 20px 0;
+    border-radius: 3px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    .form-item {
+        width: 80%;
+        margin: auto;
+        margin-bottom: 20px;
+        color: $text-color-base;
+        #title {
+            padding-bottom: 5px;
+        }
+        .input-icon {
+            width: 18px;
+            height: 18px;
+            padding: 10px 0 0 3px;
+        }
+        .forget-password-font {
+            color: $text-color-secondary;
+            float: right;
+            cursor: pointer;
+            &:hover {
+                color: inherit;
+            }
+        }
+    }
+}
+.tip-text {
+    width: fit-content;
+    margin: auto;
+    padding: 10px 5px 0 0;
+    color: #f56c6c;
+}
+.studio-font-layout {
+    width: fit-content;
+    color: white;
+    margin: auto;
+    margin-top: 70px;
+}
+</style>

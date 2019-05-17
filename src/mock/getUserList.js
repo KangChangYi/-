@@ -12,7 +12,7 @@ const getUserList = function () {
                 name: Random.cname(),
                 ip: Random.ip(),
                 email: Random.email(),
-                address: () => Random.county(true),
+                address: () => Random.city(true),
                 browser: () => Random.pick(browserList),
             },
             {
@@ -21,7 +21,7 @@ const getUserList = function () {
                 ip: Random.ip(),
                 email: Random.email(),
                 browser: () => Random.pick(browserList),
-                address: () => Random.county(true),
+                address: () => Random.city(true),
             },
             {
                 guid: Random.guid(),
@@ -29,7 +29,7 @@ const getUserList = function () {
                 ip: Random.ip(),
                 email: Random.email(),
                 browser: () => Random.pick(browserList),
-                address: () => Random.county(true),
+                address: () => Random.city(true),
             },
             {
                 guid: Random.guid(),
@@ -37,7 +37,7 @@ const getUserList = function () {
                 ip: Random.ip(),
                 email: Random.email(),
                 browser: () => Random.pick(browserList),
-                address: () => Random.county(true),
+                address: () => Random.city(true),
             },
             {
                 guid: Random.guid(),
@@ -45,7 +45,7 @@ const getUserList = function () {
                 ip: Random.ip(),
                 email: Random.email(),
                 browser: () => Random.pick(browserList),
-                address: () => Random.county(true),
+                address: () => Random.city(true),
             },
         ],
     });

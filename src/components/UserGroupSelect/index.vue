@@ -1,26 +1,3 @@
-<style lang='scss' scoped>
-.son-app {
-    margin-bottom: 15px;
-    padding: 15px 20px;
-    background: white;
-    box-shadow: $box-shadow-base;
-    //  box-shadow: $shadow-border-light;
-    border-radius: 3px;
-    cursor: pointer;
-    .user-group-select-box {
-        @include displayCenter($justify-content: flex-start);
-        .option-title {
-            text-align: right;
-        }
-        .selected-user-group-content {
-            @include displayCenter();
-            img {
-                margin: 0 5px 0 20px;
-            }
-        }
-    }
-}
-</style>
 
 <template>
     <div class="son-app" @click="clickShowUserGroupSelect()" >
@@ -28,9 +5,10 @@
             <div class="option-title">分析用户群：</div>
             <el-select
                 v-model="selectedUserGroup"
-                multiple :multiple-limit="multipleLimit" placeholder="请选择"
+                :multiple="!isMultiple ? true : false"
+                :multiple-limit="multipleLimit" placeholder="请选择"
                 v-if="isShowUserGroupSelect" >
-                <el-option v-for="item in user_group_option" :key="item.value" :value="item.value" >
+                <el-option v-for="item in userGroup" :key="item.value" :value="item.value" >
                 </el-option>
             </el-select>
             <el-button type="text" @click.stop="showCreateUserGroupDialog()"
@@ -53,12 +31,14 @@
 </template>
 
 <script>
-import { getUserGroup } from '../../api/userGroup';
+import { mapState } from 'vuex';
+// import { getUserGroup } from '../../api/userGroup';
 import UserGroupDialog from '../UserGroupDialog/index.vue';
 
 export default {
     name: 'userGroupSelect',
     props: {
+        isMultiple: Boolean,
         belong: String,
     },
     data() {
@@ -66,18 +46,18 @@ export default {
             show: false,
             isShowUserGroupSelect: false,
             selectedUserGroup: ['所有用户'],
-            user_group_option: [
-                // { name: '所有用户' },
-            ],
+            // user_group_option: [
+            //     // { name: '所有用户' },
+            // ],
             // 最大选择数
             multipleLimit: 3,
         };
     },
     created() {
-        getUserGroup().then((res) => {
-            this.user_group_option = res.data.userGroup;
-            console.log('usergourp', res.data.userGroup);
-        });
+        // getUserGroup().then((res) => {
+        //     this.user_group_option = res.data.userGroup;
+        //     // console.log('usergourp', res.data.userGroup);
+        // });
     },
     methods: {
         clickShowUserGroupSelect() {
@@ -101,7 +81,9 @@ export default {
             this.isShowUserGroupSelect = false;
         },
     },
-    computed: {},
+    computed: mapState([
+        'userGroup',
+    ]),
     watch: {
         selectedUserGroup(newValue) {
             if (newValue.length === 0) {
@@ -114,3 +96,27 @@ export default {
     },
 };
 </script>
+
+<style lang='scss' scoped>
+.son-app {
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    background: white;
+    box-shadow: $box-shadow-base;
+    //  box-shadow: $shadow-border-light;
+    border-radius: 3px;
+    cursor: pointer;
+    .user-group-select-box {
+        @include displayCenter($justify-content: flex-start);
+        .option-title {
+            text-align: right;
+        }
+        .selected-user-group-content {
+            @include displayCenter();
+            img {
+                margin: 0 5px 0 20px;
+            }
+        }
+    }
+}
+</style>

@@ -2,7 +2,7 @@
     <div class="son-app">
         <UserGroupSelect></UserGroupSelect>
         <div class="tool-layout">
-            <span>21,200人</span>
+            <span>{{userGroupNumber}}人</span>
             <div class="search-and-button">
                 <el-button type="primary" style="margin-right:15px;">
                     <i class="el-icon-download"></i> 下载
@@ -49,6 +49,7 @@ export default {
                 //     address: '上海市普陀区金沙江路 1518 弄',
                 // },
             ],
+            userGroupNumber: '21,200',
         };
     },
     created() {

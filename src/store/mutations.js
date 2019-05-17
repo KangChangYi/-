@@ -14,7 +14,7 @@ const mutations = {
     changeIndex(state, payload) {
         const { page, value } = payload;
         if (page) {
-            state[page].index = value;
+            state[page].quota = value;
         }
     },
     changeAttribute(state, payload) {

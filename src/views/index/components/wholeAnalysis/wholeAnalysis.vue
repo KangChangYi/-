@@ -1,19 +1,3 @@
-<style lang='scss' scoped>
-@mixin layout-base {
-    height: fit-content;
-    margin: auto;
-    margin-bottom: 15px;
-    padding: 15px 20px;
-    background: white;
-    box-shadow: $shadow-border-light;
-    border-radius: 3px;
-}
-.option-layout {
-    @include layout-base;
-}
-
-</style>
-
 <template>
     <div class="son-app">
         <!-- 选项区域 -->
@@ -43,11 +27,6 @@ export default {
     name: 'wholeAnalysis',
     data() {
         return {
-            event_option: [
-                { value: '事件概览' },
-                { value: '存款' },
-                { value: '提现' },
-            ],
         };
     },
     created() {
@@ -64,17 +43,17 @@ export default {
         //     console.log(this.selectedUserGroup, this.selectedIndex, this.selectedAttribute);
         // },
         getCondition() {
-            const { userGroup, index, attribute } = this;
+            const { userGroup, quota, attribute } = this;
             return {
                 userGroup,
-                index,
+                quota,
                 attribute,
             };
         },
     },
     computed: mapState({
         userGroup: state => state.whole.userGroup,
-        index: state => state.whole.index,
+        quota: state => state.whole.quota,
         attribute: state => state.whole.attribute,
         date: state => state.whole.date,
         isLoading: state => state.whole.isLoading,
@@ -87,7 +66,7 @@ export default {
                 value: condition,
             });
         },
-        index() {
+        quota() {
             const condition = this.getCondition();
             this.$store.dispatch('changeChartData', {
                 page: 'whole',
@@ -117,3 +96,19 @@ export default {
     },
 };
 </script>
+
+<style lang='scss' scoped>
+@mixin layout-base {
+    height: fit-content;
+    margin: auto;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    background: white;
+    box-shadow: $shadow-border-light;
+    border-radius: 3px;
+}
+.option-layout {
+    @include layout-base;
+}
+
+</style>
