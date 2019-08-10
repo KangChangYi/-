@@ -5,7 +5,7 @@
             <div class="option-title">分析用户群：</div>
             <el-select
                 v-model="selectedUserGroup"
-                :multiple="!isMultiple ? true : false"
+                :multiple="!isMultiple ? false : true"
                 :multiple-limit="multipleLimit" placeholder="请选择"
                 v-if="isShowUserGroupSelect" >
                 <el-option v-for="item in userGroup" :key="item.value" :value="item.value" >
@@ -18,7 +18,8 @@
             </el-button>
             <div class="selected-user-group-content" v-for="item in selectedUserGroup" :key="item"
                 v-else>
-                <img src="../../assets/image/icon-user-group.png" style="width:20px;height:20px;">
+                <img v-if="isMultiple" src="../../assets/image/icon-user-group.png"
+                 style="width:20px;height:20px;">
                 {{item}}
             </div>
         </div>
@@ -38,7 +39,10 @@ import UserGroupDialog from '../UserGroupDialog/index.vue';
 export default {
     name: 'userGroupSelect',
     props: {
-        isMultiple: Boolean,
+        isMultiple: {
+            default: true,
+            type: Boolean,
+        },
         belong: String,
     },
     data() {
@@ -87,7 +91,11 @@ export default {
     watch: {
         selectedUserGroup(newValue) {
             if (newValue.length === 0) {
-                this.selectedUserGroup.push('所有用户');
+                if (this.isMultiple) {
+                    this.selectedUserGroup.push('所有用户');
+                } else {
+                    this.selectedUserGroup = '所有用户';
+                }
             }
         },
     },

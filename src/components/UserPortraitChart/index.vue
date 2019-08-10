@@ -61,12 +61,13 @@ export default {
             }
             defaultOption.series = {
                 type: 'bar',
-                barWidth: '30%',
+                barWidth: '25%',
                 data,
             };
             const title = new Map()
                 .set('address', '地域')
-                .set('browser', '浏览器');
+                .set('browser', '浏览器')
+                .set('gender', '性别');
             console.log(title.get(this.type));
             defaultOption.title.text = title.get(this.type);
             // 绘制图表

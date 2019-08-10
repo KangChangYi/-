@@ -17,6 +17,9 @@
 
 <script>
 import { mapState } from 'vuex';
+// api
+import { getWholeChartData } from '../../../../api/chart';
+
 import UserGroupSelect from '../../../../components/UserGroupSelect/index.vue';
 import IndexAttributeSelector from '../../../../components/IndexAttributeSelector/index.vue';
 import Chart from '../../../../components/Chart/index.vue';
@@ -30,6 +33,10 @@ export default {
         };
     },
     created() {
+        getWholeChartData().then((res) => {
+            console.log(res);
+            console.log(JSON.stringify(res.data));
+        });
     },
     mounted() {
         const condition = this.getCondition();
@@ -43,11 +50,14 @@ export default {
         //     console.log(this.selectedUserGroup, this.selectedIndex, this.selectedAttribute);
         // },
         getCondition() {
-            const { userGroup, quota, attribute } = this;
+            const {
+                userGroup, quota, attribute, date,
+            } = this;
             return {
                 userGroup,
                 quota,
                 attribute,
+                date,
             };
         },
     },

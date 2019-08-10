@@ -4,7 +4,7 @@
           <div class="column">
               <div class="text"> 应用名称 </div>
               <div class="content">
-                  <el-input v-model="appName" placeholder="应用名称"></el-input>
+                  <el-input v-model="Name" @change="changeAppName" placeholder="应用名称"></el-input>
               </div>
           </div>
           <div class="column">
@@ -21,21 +21,35 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
-    name: 'logiprojectSettingn',
+    name: 'projectSetting',
     data() {
         return {
-            appName: '理财',
+            Name: '理财',
         };
     },
-    created() {},
+    created() {
+        this.Name = this.$store.state.appName;
+    },
     methods: {
+        changeAppName(e) {
+            this.$store.commit('changeAppName', e);
+            console.log(e);
+        },
         clickSave() {
             this.$message.success('保存成功');
         },
     },
-    computed: {},
-    watch: {},
+    computed: mapState([
+        'appName',
+    ]),
+    watch: {
+        appName(newValue) {
+            this.Name = newValue;
+        },
+    },
     components: {},
 };
 </script>

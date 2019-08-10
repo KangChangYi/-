@@ -12,13 +12,18 @@ const router = new Router({
                 title: '用户行为分析平台',
             },
             name: 'login',
-            component: () => import('../views/login/login.vue'),
+            component: () => import('../views/login/index.vue'),
+        },
+        {
+            path: '/register',
+            name: 'register',
+            component: () => import('../views/register/index.vue'),
         },
         {
             path: '/index',
             name: 'index',
             component: () => import('../views/index/index.vue'),
-            redirect: 'wholeAnalysis',
+            redirect: 'projectSetting',
             children: [
                 {
                     path: '/seeBoard',

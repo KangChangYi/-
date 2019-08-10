@@ -1,8 +1,8 @@
-const whole = {
+const portrait = {
     state: {
         // condition
         userGroup: ['所有用户'],
-        quota: '新增用户',
+        quota: '登录',
         attribute: '',
         date: ['2019-06-10', '2019-06-16'],
         chartType: '趋势图',
@@ -12,4 +12,4 @@ const whole = {
     },
 };
 
-export default whole;
+export default portrait;

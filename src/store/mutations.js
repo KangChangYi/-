@@ -38,6 +38,9 @@ const mutations = {
     addUserGroup(state, payload) {
         state.userGroup.push({ enable: '已启用', value: payload, number: Math.floor(Math.random() * 1000 + 200) });
     },
+    changeAppName(state, payload) {
+        state.appName = payload;
+    },
 };
 
 export default mutations;

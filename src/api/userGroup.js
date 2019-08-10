@@ -25,3 +25,15 @@ export function getUserList(email, password) {
         },
     });
 }
+
+export function getUserListLittie(email, password) {
+    return request({
+        url: '/getUserListLittie',
+        method: 'get',
+        data: {
+            email,
+            password,
+            name: email,
+        },
+    });
+}

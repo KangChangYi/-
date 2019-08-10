@@ -31,50 +31,34 @@
 
 <template>
     <div>
-        <el-menu
-            class="el-menu-vertical-demo"
-            background-color="#304156"
-            text-color="#bfcbd9"
-            :collapse="isCollapse"
-            router
-        >
-            <el-menu-item index="seeBoard">
-                <img
-                    src="../../../../assets/image/icon-ban.png"
-                    class="menu-icon"
-                >
+        <el-menu class="el-menu-vertical-demo" background-color="#304156"
+            text-color="#bfcbd9" :collapse="isCollapse" router>
+
+            <!-- <el-menu-item index="seeBoard">
+                <img src="../../../../assets/image/icon-ban.png" class="menu-icon">
                 <span slot="title">看板</span>
             </el-menu-item>
 
             <el-menu-item index="receiveVisitor">
-                <img
-                    src="../../../../assets/image/icon-edition.png"
-                    class="menu-icon"
-                >
+                <img src="../../../../assets/image/icon-edition.png" class="menu-icon">
                 <span slot="title">获客渠道</span>
-            </el-menu-item>
+            </el-menu-item> -->
 
             <el-submenu index="1">
                 <template slot="title">
-                    <img
-                        src="../../../../assets/image/icon-behavior.png"
-                        class="menu-icon"
-                    >
+                    <img src="../../../../assets/image/icon-behavior.png" class="menu-icon">
                     <span>用户行为分析</span>
                 </template>
                 <el-menu-item index="wholeAnalysis">整体分析</el-menu-item>
                 <el-menu-item index="eventAnalysis">事件分析</el-menu-item>
                 <!-- <el-menu-item index="terminalAnalysis">终端分析</el-menu-item> -->
                 <!-- <el-menu-item index="funnelAnalysis">漏斗分析</el-menu-item> -->
-                <el-menu-item index="retainAnalysis">留存分析</el-menu-item>
+                <!-- <el-menu-item index="retainAnalysis">留存分析</el-menu-item> -->
             </el-submenu>
 
             <el-submenu index="2">
                 <template slot="title">
-                    <img
-                        src="../../../../assets/image/icon-user.png"
-                        class="menu-icon"
-                    >
+                    <img src="../../../../assets/image/icon-user.png" class="menu-icon">
                     <span>用户</span>
                 </template>
                 <el-menu-item index="userGroup">用户群</el-menu-item>

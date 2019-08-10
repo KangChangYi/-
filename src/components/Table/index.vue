@@ -13,7 +13,7 @@
                 :current-page.sync="currentPage"
                 :page-size="30"
                 layout="prev, pager, next, jumper"
-                :total="300">
+                :total="30">
             </el-pagination>
         </div>
     </div>
@@ -54,57 +54,140 @@ export default {
         lineMode(chartData) {
             const tableData = [];
             const tableColumn = [];
-            console.log(chartData);
             // 提取图表数据
-
-            chartData.forEach((val) => {
-                tableData.push({
-                    用户群: val.userGroup,
-                    指标: val.quota.name,
-                    ...val.quota.list,
+            console.log(chartData);
+            // 在属性分析的情况下
+            if (chartData[0].attribute) {
+                // 循环用户群
+                chartData.forEach((userGroup) => {
+                    // 过滤数据
+                    const date = Object.keys(userGroup.attribute.list);
+                    const data = Object.values(userGroup.attribute.list);
+                    console.log(data, date);
+                    // 初始化 属性名和数据
+                    const attiNameAndData = [];
+                    data.forEach((value, idx) => {
+                        value.forEach((val) => {
+                            const isFind = attiNameAndData.findIndex(v => v.name === val.name);
+                            if (isFind === -1) {
+                                attiNameAndData.push({
+                                    name: val.name,
+                                    list: {
+                                        [date[idx]]: val.number,
+                                    },
+                                });
+                            } else {
+                                attiNameAndData[isFind].list[date[idx]] = val.number;
+                            }
+                        });
+                    });
+                    console.log(attiNameAndData);
+                    attiNameAndData.forEach((val) => {
+                        tableData.push({
+                            用户群: userGroup.userGroup,
+                            [this.quota]: userGroup.quota.name,
+                            [userGroup.attribute.name]: val.name,
+                            ...val.list,
+                        });
+                    });
+                    console.log(tableData);
                 });
-            });
-            console.log(tableData);
-
-            // 提取字段
-            Object.keys(tableData[0]).forEach((name) => {
-                tableColumn.push({
-                    prop: name,
-                    title: name,
+                // 提取字段
+                Object.keys(tableData[0]).forEach((name) => {
+                    tableColumn.push({
+                        prop: name,
+                        title: name,
+                    });
                 });
-            });
-
+            } else {
+                // 无属性分析的情况下
+                chartData.forEach((val) => {
+                    tableData.push({
+                        用户群: val.userGroup,
+                        [this.quota]: val.quota.name,
+                        ...val.quota.list,
+                    });
+                });
+                console.log(tableData);
+                // 提取字段
+                Object.keys(tableData[0]).forEach((name) => {
+                    tableColumn.push({
+                        prop: name,
+                        title: name,
+                    });
+                });
+            }
             this.tableColumn = tableColumn;
             this.tableData = tableData;
         },
         pieAndBarMode(chartData) {
-            // list 的键数组
-            const keysArray = Object.keys(chartData[0].list);
-            // pie 和 bar 需要将日期合并
-            const dateRange = `${keysArray[0]}~${keysArray[keysArray.length - 1]}`;
-
             const tableData = [];
             const tableColumn = [];
-
-            // 提取图表数据
-            chartData.forEach((value) => {
-                const dateValueSum = Object.values(value.list)
-                    .reduce((acc, val) => acc + Number(val));
-                tableData.push({
-                    用户群: value.userGroup,
-                    指标: value.index,
-                    [dateRange]: dateValueSum,
+            // 在属性分析的情况下
+            // list 的键数组
+            const keysArray = Object.keys(chartData[0].quota.list);
+            // pie 和 bar 需要将日期合并
+            const dateRange = `${keysArray[0]}~${keysArray[keysArray.length - 1]}`;
+            if (chartData[0].attribute) {
+                // 循环用户群
+                chartData.forEach((userGroup) => {
+                    const date = Object.keys(userGroup.attribute.list);
+                    const data = Object.values(userGroup.attribute.list);
+                    console.log(data, date);
+                    // 初始化 属性名和数据
+                    const attiNameAndData = [];
+                    //   { name:"" , data:''}
+                    data.forEach((value) => {
+                        value.forEach((val) => {
+                            const isFind = attiNameAndData.findIndex(v => v.name === val.name);
+                            if (isFind === -1) {
+                                attiNameAndData.push({
+                                    name: val.name,
+                                    data: val.number,
+                                });
+                            } else {
+                                attiNameAndData[isFind].data += val.number;
+                            }
+                        });
+                    });
+                    console.log(attiNameAndData);
+                    attiNameAndData.forEach((val) => {
+                        tableData.push({
+                            用户群: userGroup.userGroup,
+                            [this.quota]: userGroup.quota.name,
+                            [userGroup.attribute.name]: val.name,
+                            [dateRange]: val.data,
+                        });
+                    });
+                    console.log(tableData);
                 });
-            });
-            console.log(tableData);
-            // 提取字段
-            Object.keys(tableData[0]).forEach((name) => {
-                tableColumn.push({
-                    prop: name,
-                    title: name,
+                // 提取字段
+                Object.keys(tableData[0]).forEach((name) => {
+                    tableColumn.push({
+                        prop: name,
+                        title: name,
+                    });
                 });
-            });
-
+            } else {
+                // 提取图表数据
+                chartData.forEach((value) => {
+                    const dateValueSum = Object.values(value.quota.list)
+                        .reduce((acc, val) => acc + Number(val));
+                    tableData.push({
+                        用户群: value.userGroup,
+                        [this.quota]: value.quota.name,
+                        [dateRange]: dateValueSum,
+                    });
+                });
+                console.log(tableData);
+                // 提取字段
+                Object.keys(tableData[0]).forEach((name) => {
+                    tableColumn.push({
+                        prop: name,
+                        title: name,
+                    });
+                });
+            }
             this.tableColumn = tableColumn;
             this.tableData = tableData;
         },
@@ -162,6 +245,9 @@ export default {
                 return state[this.belong].chartData;
             },
         }),
+        quota() {
+            return this.belong === 'whole' ? '指标' : '事件';
+        },
     },
     watch: {
         chartType(newVal) {

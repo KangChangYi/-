@@ -25,18 +25,26 @@
                 </el-input>
             </div>
 
+            <div class="form-item">
+                <div id="title">确认密码</div>
+                <el-input placeholder="请输入确认密码" type="password" @focus="focusInput()"
+                 v-model="loginForm.confirmPassWord">
+                    <img slot="prefix" class="input-icon"
+                    src="../../assets/image/icon-passWord.png" >
+                </el-input>
+            </div>
+
             <div class="form-item" style="padding-top:25px">
                 <el-button style="width:100%" type="primary" @click="login()">
-                    <span style="font-size:16px">登录</span>
+                    <span style="font-size:16px">注册</span>
                 </el-button>
             </div>
 
-            <div class="form-item">
-                <el-checkbox v-model="isAutoLogin" @click="clickAutoLogin()">下次自动登录</el-checkbox>
-                <div class="forget-password-font" @click="clickForgetPassWord()">忘记密码</div>
+            <div class="form-item" style="padding-bottom:10px">
+                <div class="forget-password-font" @click="clickGoToLogin()">已有账号，去登陆</div>
             </div>
         </div>
-        <div class="studio-font-layout">@Fearless_Studio</div>
+        <div class="studio-font-layout">@仙人指路</div>
     </div>
 </template>
 
@@ -44,12 +52,13 @@
 import { mapState } from 'vuex';
 
 export default {
-    name: 'login',
+    name: 'register',
     data() {
         return {
             loginForm: {
                 userName: '',
                 passWord: '',
+                confirmPassWord: '',
             },
             isAutoLogin: false,
             isFormDataError: false,
@@ -81,7 +90,10 @@ export default {
         clickAutoLogin() {
             this.isAutoLogin = !this.isAutoLogin;
         },
-        clickForgetPassWord() {
+        clickGoToLogin() {
+            this.$router.push({
+                name: 'login',
+            });
         },
     },
 

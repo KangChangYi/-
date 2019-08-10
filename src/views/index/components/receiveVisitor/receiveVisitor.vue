@@ -1,14 +1,12 @@
-<style lang='scss' scoped>
-@import "../../../../styles/public.scss";
-</style>
-
 <template>
-  <div class="son-app"></div>
+    <div class="son-app">
+
+    </div>
 </template>
 
 <script>
 export default {
-    name: 'login',
+    name: 'receiveVisitor',
     data() {
         return {};
     },
@@ -19,3 +17,7 @@ export default {
     components: {},
 };
 </script>
+
+<style lang='scss' scoped>
+
+</style>

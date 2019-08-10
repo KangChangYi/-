@@ -1,18 +1,14 @@
-# 用户行为分析后台
+# 用户行为分析后台📊（服务外包竞赛）
 
-## Project setup
+## 启动
 ```
 npm install
-```
 
-### Compiles and hot-reloads for development
-```
 npm run serve
 ```
++ 项目架构：Vue全家桶 + Element-ui + axios + eCharts
 
-### Compiles and minifies for production
-```
-npm run build
-```
++ 支持用户群、指标、用户属性以时间的四个维度交叉分析，并且可以按照不同的图表类型查看。
 
-+ 账号密码 ： test
+## 整体分析页预览🎬：
+![](./src/assets/image/common-page.png)

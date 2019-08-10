@@ -1,5 +1,107 @@
+<template>
+    <div class="app">
+        <!-- 侧边导航栏组件 -->
+        <naviMenu :isCollapse="isCollapse"></naviMenu>
+        <!-- 内容 -->
+        <div class="layout">
+            <!-- header -->
+            <div class="header-layout">
+                <div class="header-left-indent-box"
+                :class="[isCollapse ? header_css_width_large : '']" @click="clickLeftIndent()" >
+                    <img v-if="!isCollapse" src="../../assets/image/icon-left-indent.png" >
+                    <img v-else src="../../assets/image/icon-right-indent.png" >
+                </div>
+                <div class="header-right-box">
+                    <!-- 头像下拉菜单 -->
+                    <el-dropdown @command="clickDropDown">
+                        <div class="user-avatar-box">
+                            <img src="../../assets/image/icon-avatar.png">
+                            <i class="el-icon-caret-bottom"></i>
+                        </div>
+                        <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item command="项目设置">项目设置</el-dropdown-item>
+                            <el-dropdown-item command="修改密码">修改密码</el-dropdown-item>
+                            <el-dropdown-item command="登出" divided>
+                                <span style="color:#F56C6C">退出登录</span>
+                            </el-dropdown-item>
+                        </el-dropdown-menu>
+                    </el-dropdown>
+                </div>
+            </div>
+            <!-- content -->
+            <div class="content-layout">
+                <div id="page-title">{{pageTitle}}</div>
+                <router-view></router-view>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import naviMenu from './components/naviMenu/naviMenu.vue';
+
+const titleMap = new Map();
+titleMap
+    .set('wholeAnalysis', '整体分析')
+    .set('receiveVisitor', '获客渠道')
+    .set('eventAnalysis', '事件分析')
+    .set('flowAnalysis', '流量分析')
+    .set('terminalAnalysis', '终端分析')
+    .set('funnelAnalysis', '漏斗分析')
+    .set('retainAnalysis', '留存分析')
+    .set('userGroup', '用户群')
+    .set('userPortrait', '用户画像')
+    .set('projectSetting', '项目设置')
+    .set('seeBoard', '看板');
+export default {
+    name: 'index',
+    data() {
+        return {
+            // header动态样式
+            header_css_width_large: 'header-width-large',
+            // 导航栏是否收缩
+            isCollapse: false,
+            pageTitle: '项目设置',
+        };
+    },
+    created() { },
+    methods: {
+        clickLeftIndent() {
+            this.isCollapse = !this.isCollapse;
+        },
+        clickDropDown(command) {
+            if (command === '登出') {
+                this.$confirm('即将退出登录, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning',
+                })
+                    .then(() => {
+                        this.$router.push({ name: 'login' });
+                    })
+                    .catch(() => {
+                        this.$message('取消登出!');
+                    });
+            } else if (command === '项目设置') {
+                this.$router.push({
+                    name: 'projectSetting',
+                });
+            }
+        },
+    },
+    computed: {},
+    watch: {},
+    components: { naviMenu },
+    // 路由更新时改变pageTitle
+    beforeRouteUpdate(to, from, next) {
+        this.pageTitle = titleMap.get(to.name);
+        next();
+    },
+};
+
+</script>
+
 <style lang='scss' scoped>
-@import "../../styles/public.scss";
 .app {
     display: flex;
     .layout {
@@ -64,106 +166,3 @@
     margin-left: 64px !important;
 }
 </style>
-
-<template>
-    <div class="app">
-        <!-- 侧边导航栏组件 -->
-        <naviMenu :isCollapse="isCollapse"></naviMenu>
-        <!-- 内容 -->
-        <div class="layout">
-            <!-- header -->
-            <div class="header-layout">
-                <div class="header-left-indent-box"
-                :class="[isCollapse ? header_css_width_large : '']" @click="clickLeftIndent()" >
-                    <img v-if="!isCollapse" src="../../assets/image/icon-left-indent.png" >
-                    <img v-else src="../../assets/image/icon-right-indent.png" >
-                </div>
-                <div class="header-right-box">
-                    <!-- 头像下拉菜单 -->
-                    <el-dropdown @command="clickDropDown">
-                        <div class="user-avatar-box">
-                            <img src="../../assets/image/icon-avatar.png">
-                            <i class="el-icon-caret-bottom"></i>
-                        </div>
-                        <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item command="项目设置">项目设置</el-dropdown-item>
-                            <el-dropdown-item command="修改密码">修改密码</el-dropdown-item>
-                            <el-dropdown-item command="登出" divided>
-                                <span style="color:#F56C6C">退出登录</span>
-                            </el-dropdown-item>
-                        </el-dropdown-menu>
-                    </el-dropdown>
-                </div>
-            </div>
-            <!-- content -->
-            <div class="content-layout">
-                <div id="page-title">{{pageTitle}}</div>
-                <router-view></router-view>
-            </div>
-        </div>
-    </div>
-</template>
-
-<script>
-import naviMenu from './components/naviMenu/naviMenu.vue';
-
-const titleMap = new Map();
-titleMap
-    .set('wholeAnalysis', '整体分析')
-    .set('receiveVisitor', '获客渠道')
-    .set('eventAnalysis', '事件分析')
-    .set('flowAnalysis', '流量分析')
-    .set('terminalAnalysis', '终端分析')
-    .set('funnelAnalysis', '漏斗分析')
-    .set('retainAnalysis', '留存分析')
-    .set('userGroup', '用户群')
-    .set('userPortrait', '用户画像')
-    .set('projectSetting', '项目设置')
-    .set('seeBoard', '看板');
-export default {
-    name: 'index',
-    data() {
-        return {
-            // header动态样式
-            header_css_width_large: 'header-width-large',
-            // 导航栏是否收缩
-            isCollapse: false,
-            pageTitle: '整体分析',
-        };
-    },
-    created() { },
-    methods: {
-        clickLeftIndent() {
-            this.isCollapse = !this.isCollapse;
-        },
-        clickDropDown(command) {
-            if (command === '登出') {
-                this.$confirm('即将退出登录, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning',
-                })
-                    .then(() => {
-                        this.$router.push({ name: 'login' });
-                    })
-                    .catch(() => {
-                        this.$message('取消登出!');
-                    });
-            } else if (command === '项目设置') {
-                this.$router.push({
-                    name: 'projectSetting',
-                });
-            }
-        },
-    },
-    computed: {},
-    watch: {},
-    components: { naviMenu },
-    // 路由更新时改变pageTitle
-    beforeRouteUpdate(to, from, next) {
-        this.pageTitle = titleMap.get(to.name);
-        next();
-    },
-};
-
-</script>

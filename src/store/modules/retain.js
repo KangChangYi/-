@@ -1,10 +1,10 @@
-const whole = {
+const retain = {
     state: {
         // condition
         userGroup: ['所有用户'],
         quota: '新增用户',
         attribute: '',
-        date: ['2019-06-10', '2019-06-16'],
+        date: ['2019-05-12', '2019-05-18'],
         chartType: '趋势图',
         // data
         chartData: {},
@@ -12,4 +12,4 @@ const whole = {
     },
 };
 
-export default whole;
+export default retain;

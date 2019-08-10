@@ -13,9 +13,16 @@ export function getData(email, password) {
     });
 }
 
-export function getData2(email, password) {
+export function getWholeChartData() {
     return request({
-        url: '/users/register',
+        url: 'http://localhost:8001/getWholeChartData',
+        method: 'get',
+    });
+}
+
+export function getEventChartData(email, password) {
+    return request({
+        url: '/getEventChartData',
         method: 'get',
         data: {
             email,

@@ -4,7 +4,7 @@ const cpus = require('os').cpus().length;
 
 module.exports = {
     // 基本路径
-    publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
+    publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
     // your_production_url
 
     // 输出文件目录
